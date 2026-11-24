@@ -48,6 +48,9 @@ def main() -> None:
         raise SystemExit(
             f"vow is {len(text)} characters, over the {MAX_CHARS} limit"
         )
+    # The brief asks for one sentence: exactly one full stop, at the end.
+    if text.count(".") != 1 or not text.endswith("."):
+        raise SystemExit("vow is not exactly one sentence")
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(text, encoding="utf-8")
     print(text)
